@@ -100,14 +100,18 @@ label {
   #todo-list .due-date, #completed-list .due-date {
     display: inline-block; }
   #todo-list .task, #completed-list .task {
-    width: 60%;
-    display: inline-block; }
-
+    width: 20%;
+    display: inline-flex; }
+  #todo-list .user, #completed-list .user {
+    width: 20%;
+    display: inline; }
 #todo-list .ui-state-highlight, #completed-list .ui-state-highlight {
   min-height: 30px;
 }
-
-.delete, .done {
+#completed-list .edit{
+  display: none;
+}
+.delete, .done,.edit {
   font-family: ModernPictograms;
   font-size: .9em;
   display: inline-block;
@@ -125,11 +129,15 @@ label {
   margin-right: 1em;
   color: white; }
 
-.delete {
+.delete,.edit {
   float: right; }
 
 .delete:hover {
   background-color: red;
+  color: white; }
+
+.edit:hover {
+  background-color: yellow;
   color: white; }
 
 #todo-list .done:hover {
