@@ -21,7 +21,7 @@ $(document).ready(function(e) {
              
                 var $newTask=$(taskHTML);
                 $newTask.find('.task').text(taskName);
-                $newTask.find('.user').text(userName);
+                $newTask.find('.user').text("   "+userName);
                 $newTask.hide();
                 $('#todo-list').prepend($newTask);
                 $newTask.show('clip',250).effect('highlight',1000);
@@ -46,17 +46,23 @@ $(document).ready(function(e) {
         placeholder : 'ui-state-highlight',
         cancel : '.delete,.done'
     });
-    
+    var delete_item;
     $('.sortlist').on('click','.delete',function() {
-        
-        checkstr=confirm('Do you want to confirm deletion?')
-        if(checkstr == true){
-            $(this).parent('li').effect('puff', function() { $(this).remove(); });
-        }else{
-            return false;
-        }
-       
+        delete_item = $(this).parent('li');
+        $('#confirm-deletion').dialog('open');
     });
+    $('#confirm-deletion').dialog({
+        modal : true , autoOpen : false ,
+		buttons : {
+			"Confirm" : function () { 
+                delete_item.effect('puff', function() { $(this).remove();});
+                $(this).dialog('close');
+			},
+			"Cancel" : function () { $(this).dialog('close'); }
+		}
+    })
+
+
     var edit_item;
     $('.sortlist').on('click','.edit',function() {
         edit_item=$(this).parent('li');
